@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>projects</title>
+  <style>
+    body {
+      font-family: Arial;
+    }
+    .said {
+      border: none;
+      background-color: black;
+      color: white;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 15px;
+      padding-right: 15px;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-bottom: 30px;
+    }
+    .Subscribed {
+      background-color: rgb(240, 240, 240);
+      color: black;
+    }
+    .cost-input {
+      font-size: 15px;
+      padding: 10px;
+    }
+    .Calculate {
+      background-color: green;
+      color: white;
+      border: none;
+      font-size: 15px;
+      padding: 12px 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <p>YouTube Subscribe Button</p>
+  <button class="js-subButton said" onclick="sub();">Subscribe</button>
+
+  <p>Amazon Shipping Calculator</p>
+  <input placeholder="cost of order" type="text" class="js-cost-input cost-input" onkeydown="checkIfNumber(event);
+  " >
+  <button onclick="calculator()" class="Calculate">Calculate</button>
+  <p class="js-result"></p>
+  <script>
+    function sub() {
+    const buttonelem = document.querySelector('.js-subButton');
+
+    if (buttonelem.innerText === 'Subscribe') {
+      buttonelem.innerText = 'Subscribed';
+      buttonelem.classList.add('Subscribed');
+    } else {
+      buttonelem.innerText = 'Subscribe';
+      buttonelem.classList.remove('Subscribed')
+    }           
+    }
+
+    function calculator() {
+      const inputElem = document.querySelector('.js-cost-input');
+      let cost = Number(inputElem.value);
+    
+      if (cost < 40 && cost >= 1) {
+        cost = cost + 10;
+      } else if (cost == 0) {
+        cost = 'put your price'
+      }
+
+      document.querySelector('.js-result').innerHTML =`$${cost}`;
+     }
+
+
+     function checkIfNumber(event) {
+      if (event.key === 'Enter') {
+        calculator();
+      }
+     }
+    </script>
+</body>
+</html>
